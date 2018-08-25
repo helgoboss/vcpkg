@@ -35,7 +35,7 @@ else()
 endif()
 
 if(APPLE)
-    list(APPEND B2_OPTIONS target-os=darwin toolset=clang)
+    list(APPEND B2_OPTIONS "target-os=darwin toolset=clang macosx-version-min=10.7 cxxflags=\"-arch i386 -arch x86_64 -std=c++1y -stdlib=libc++ -isysroot /Developer/SDKs/MacOSX10.7.sdk\"")
 else()
     list(APPEND B2_OPTIONS target-os=linux toolset=gcc)
 endif()
