@@ -23,5 +23,19 @@ set(CMAKE_OSX_ARCHITECTURES "i386;x86_64" CACHE STRING "")
 # isysroot /Developer/SDKs/MacOSX10.7.sdk
 set(CMAKE_OSX_SYSROOT "/Developer/SDKs/MacOSX10.7.sdk" CACHE STRING "")
 
-# linkflags="-stdlib=libc++"
-# Probably not necessary
+
+# To enable C++11/14 support by default for this older SDK we still need to do something
+# (otherwise e.g. uwebsockets doesn't compile because it can't find mutex header)
+
+# Add first try this
+set(CMAKE_CXX_STANDARD 14 CACHE STRING "")
+
+# If it doesn't work, could try something like that:
+
+# -std=c++1y
+# set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LANGUAGE_STANDARD "c++1y" CACHE STRING "")
+
+# -stdlib=libc++
+#set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++" CACHE STRING "")
+
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -stdlib=libc++" CACHE STRING "")
